@@ -3,60 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Study Notes</title>
+    <title>Calculus II Study Notes</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
-            max-width: 900px;
+            max-width: 1000px;
             margin: 40px auto;
             padding: 0 20px;
             color: #333;
-            background-color: #f9f9f9;
+            background-color: #f4f7f6;
         }
-        h1 { color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px; }
-        .download-box {
+        h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .header-section {
             background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             margin-bottom: 30px;
+            text-align: center;
         }
         .btn {
             display: inline-block;
             background: #3498db;
             color: #fff;
-            padding: 10px 20px;
+            padding: 12px 25px;
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.3s ease;
         }
-        .btn:hover { background: #2980b9; }
-        .viewer-container {
-            height: 800px;
-            width: 100%;
-            border: 1px solid #ddd;
-            border-radius: 8px;
+        .btn:hover { background: #217dbb; }
+        .viewer-wrapper {
+            position: relative;
+            padding-bottom: 75%; /* Aspect Ratio for the viewer */
+            height: 0;
             overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            background: #fff;
         }
-        iframe { width: 100%; height: 100%; border: none; }
+        .viewer-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
     </style>
 </head>
 <body>
 
-    <h1>Course Materials</h1>
-
-    <div class="download-box">
-        <h3>Calculus II Study Notes</h3>
-        <p>Handwritten notes exported from Huawei Notes. Optimized for high-resolution viewing.</p>
-        <a href="Calculus II.pdf" class="btn" target="_blank">View / Download PDF</a>
+    <div class="header-section">
+        <h1>Calculus II Notes</h1>
+        <p>Full-resolution handwritten notes synced from Huawei Notes.</p>
+        <a href="https://drive.google.com/file/d/17H2MsmdV3BG_VU42UU9l2ksCNqQ9pEfs/view?usp=sharing" class="btn" target="_blank">Open in Google Drive</a>
     </div>
 
-    <h3>Interactive Viewer</h3>
-    <div class="viewer-container">
-        <iframe src="Calculus II.pdf">
-            <p>This browser does not support inline PDFs. Please use the link above to view the file.</p>
-        </iframe>
+    <div class="viewer-wrapper">
+        <iframe src="https://drive.google.com/file/d/17H2MsmdV3BG_VU42UU9l2ksCNqQ9pEfs/preview"></iframe>
     </div>
 
 </body>
