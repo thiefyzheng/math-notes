@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculus II - Course Notes</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- MathJax Configuration for LaTeX rendering -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                macros: {
+                    R: "\\mathbb{R}",
+                    norm: ["\\lVert #1 \\rVert", 1],
+                    vecx: "\\vec{x}",
+                    vecy: "\\vec{y}",
+                    veca: "\\vec{a}"
+                }
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        /* Custom tweaks for math readability */
+        .math-display { overflow-x: auto; padding-bottom: 0.5rem; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans leading-relaxed">
+
+    <div class="max-w-4xl mx-auto px-6 py-12 md:py-20 bg-white shadow-xl sm:rounded-2xl sm:my-10">
+        
+        <!-- Document Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">Calculus II - Course Notes</h1>
+            <p class="text-lg md:text-xl text-slate-600 mb-2 font-medium">Analytic Geometry, Surfaces in $\R^3$, and Multivariable Calculus</p>
+            <p class="text-sm text-slate-400">Started: February 16, 2026</p>
+        </header>
+
+        <hr class="border-slate-200 mb-10">
+
+        <!-- Table of Contents (Simplified) -->
+        <nav class="bg-slate-50 p-6 rounded-lg border border-slate-100 mb-12">
+            <h2 class="text-xl font-bold mb-4 text-slate-800">Table of Contents</h2>
+            <ul class="list-decimal pl-6 space-y-2 text-blue-600 font-medium">
+                <li><a href="#section-1" class="hover:underline">Introduction to Euclidean Space ($\R^m$)</a></li>
+                <li><a href="#section-2" class="hover:underline">Topology of $\R^m$</a></li>
+                <li><a href="#section-3" class="hover:underline">Multivariable Functions</a></li>
+                <li><a href="#section-4" class="hover:underline">Limits and Continuity</a></li>
+                <li><a href="#section-5" class="hover:underline">Derivatives</a></li>
+                <li><a href="#section-6" class="hover:underline">Chain Rule and Directional Derivatives</a></li>
+                <li><a href="#section-7" class="hover:underline">Optimization</a></li>
+                <li><a href="#section-8" class="hover:underline">Lagrange Multipliers</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <article class="prose prose-slate prose-lg max-w-none">
+
+            <!-- Section 1 -->
+            <section id="section-1" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 border-b-2 border-slate-100 pb-2 mb-6">1. Introduction to Euclidean Space ($\R^m$)</h2>
+                
+                <h3 class="text-2xl font-semibold text-slate-800 mt-8 mb-4">1.1 Vectors and Norms</h3>
+                <p class="mb-4">In an Euclidean space $\R^n$, vectors are represented as:</p>
+                <div class="math-display">\[ \vecx = (x_1, x_2, \dots, x_n) \]</div>
+                <div class="math-display">\[ \vecy = (y_1, y_2, \dots, y_n) \]</div>
+
+                <h4 class="text-lg font-bold mt-6 mb-2">Operations:</h4>
+                <ul class="list-disc pl-6 mb-6 space-y-2">
+                    <li><strong>Sum of vectors:</strong> $\vecx + \vecy = (x_1 + y_1, x_2 + y_2, \dots, x_n + y_n)$</li>
+                    <li><strong>Scalar multiplication:</strong> $c \in \R \implies c\vecx = (cx_1, cx_2, \dots, cx_n)$</li>
+                    <li><strong>Scalar (Dot) Product:</strong> $\vecx \cdot \vecy = x_1y_1 + x_2y_2 + \dots + x_ny_n$</li>
+                </ul>
+
+                <h4 class="text-lg font-bold mt-6 mb-2">Norm/Metric:</h4>
+                <p class="mb-4">The norm assigns to each vector a non-negative number:</p>
+                <div class="math-display">\[ \norm{\vecx} = \sqrt{\vecx \cdot \vecx} = \sqrt{x_1^2 + x_2^2 + \dots + x_n^2} \]</div>
+                <p class="mb-6">Distance between two points: $d(\vecx, \vecy) = \norm{\vecx - \vecy}$.</p>
+
+                <h4 class="text-lg font-bold mt-6 mb-2">Properties of Norm:</h4>
+                <ol class="list-decimal pl-6 mb-6 space-y-2">
+                    <li>$\norm{\vecx + \vecy} \le \norm{\vecx} + \norm{\vecy}$ (Triangle Inequality)</li>
+                    <li>$\norm{\vecx} \ge 0$, and $\norm{\vecx} = 0 \iff \vecx = \vec{0}$</li>
+                </ol>
+            </section>
+
+            <!-- Section 2 -->
+            <section id="section-2" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 border-b-2 border-slate-100 pb-2 mb-6">2. Topology of $\R^m$</h2>
+
+                <h3 class="text-2xl font-semibold text-slate-800 mt-8 mb-4">2.1 Balls and Neighborhoods</h3>
+                <ul class="list-disc pl-6 mb-6 space-y-2">
+                    <li><strong>Open Ball:</strong> $B_r(\veca) = \{ \vecx \in \R^m : \norm{\vecx - \veca} < r \}$, where $r$ is the radius and $\veca$ is the center.</li>
+                    <li>In $\R^2$, the unit ball centered at the origin is $B_1((0,0)) = \{ (x,y) : \sqrt{x^2+y^2} < 1 \}$.</li>
+                </ul>
+
+                <h3 class="text-2xl font-semibold text-slate-800 mt-8 mb-4">2.2 Interior, Boundary, and Closure</h3>
+                <p class="mb-4">Given a domain $D \subset \R^m$:</p>
+                <ul class="list-disc pl-6 mb-6 space-y-2">
+                    <li><strong>Interior Point:</strong> $\vec{p} \in D$ is an interior point if there exists $\epsilon > 0$ such that $B_\epsilon(\vec{p}) \subseteq D$.</li>
+                    <li><strong>Boundary Point:</strong> $\vec{p}$ is a boundary point of $D$ if for every $\epsilon > 0$, the ball $B_\epsilon(\vec{p})$ contains points both inside $D$ and outside $D$ ($B_\epsilon \cap D \neq \emptyset$ and $B_\epsilon \cap (\R^m \setminus D) \neq \emptyset$).</li>
+                    <li><strong>Isolated Point:</strong> $\vec{p} \in D$ is isolated if there exists $\epsilon > 0$ such that $B_\epsilon(\vec{p}) \cap D = \{\vec{p}\}$.</li>
+                    <li><strong>Open Set:</strong> A set $D$ is open if all its points are interior points.</li>
+                    <li><strong>Closed Set:</strong> A set $D$ is closed if its complement ($\R^m \setminus D$) is open, or equivalently, if it contains all its boundary points ($\partial D \subseteq D$).</li>
+                    <li><strong>Closure:</strong> $\overline{D} = D \cup \partial D$.</li>
+                    <li><strong>Accumulation Point:</strong> $\veca \in \R^m$ is an accumulation point if every $B_\epsilon(\veca)$ contains at least one point of $D$ other than $\veca$.</li>
+                </ul>
+            </section>
+
+            <!-- Section 3 -->
+            <section id="section-3" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 border-b-2 border-slate-100 pb-2 mb-6">3. Multivariable Functions</h2>
+                <p class="mb-6">A scalar function of several variables is a mapping $f: \R^m \rightarrow \R$.</p>
+
+                <h3 class="text-2xl font-semibold text-slate-800 mt-8 mb-4">3.1 Domains and Graphs</h3>
+                <p class="mb-4">The graph of a function $f(x,y)$ is a surface in $\R^3$:</p>
+                <div class="math-display">\[ \text{Graph} = \{ (x,y,z) : (x,y) \in D(f), z = f(x,y) \} \]</div>
+
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
+                    <p class="font-bold">Example: Paraboloid</p>
+                    <div class="math-display">\[ f(x,y) = x^2 + y^2 \implies z = x^2 + y^2 \]</div>
+                </div>
+
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+                    <p class="font-bold">Example: Hyperbolic Paraboloid</p>
+                    <div class="math-display">\[ f(x,y) = y^2 - x^2 \implies z = y^2 - x^2 \]</div>
+                </div>
+
+                <h3 class="text-2xl font-semibold text-slate-800 mt-8 mb-4">3.2 Level Curves and Surfaces</h3>
+                <p class="mb-4">For a constant $c \in \R$, a level curve is the set:</p>
+                <div class="math-display">\[ H_c(f) = \{ (x,y) \in D(f) : f(x,y) = c \} \]</div>
+                <p class="italic">Example: For $f(x,y) = \sqrt{9-x^2-y^2}$, setting $z=c$ yields circles $x^2+y^2 = 9-c^2$ for $0 \le c \le 3$.</p>
+            </section>
+
+            <!-- Section 4 -->
+            <section id="section-4" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 border-b-2 border-slate-100 pb-2 mb-6">4. Limits and Continuity</h2>
+
+                <h3 class="text-2xl font-semibold text-slate-800 mt-8 mb-4">4.1 Definition of a Limit</h3>
+                <p class="mb-4">Suppose $\veca$ is an accumulation point of the domain $D$. We say $\lim_{\vecx \to \veca} f(\vecx) = L$ if for every $\epsilon > 0$, there exists $\delta > 0$ such that:</p>
+                <div class="math-display">\[ 0 < \norm{\vecx - \veca} < \delta \implies |f(\vecx) - L| < \epsilon \]</div>
+                <p class="italic bg-yellow-50 p-3 rounded-lg border border-yellow-200"><strong>Theorem:</strong> If a limit exists, it is unique.</p>
+
+                <h3 class="text-2xl font-semibold text-slate-800 mt-8 mb-4">4.2 Evaluating Limits</h3>
+                <p class="mb-4">To prove a limit does not exist, show that approaching $(0,0)$ along different paths (e.g., $x=0$, $y=0$, or $y=mx$) yields different results.</p>
+
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
+                    <p class="font-bold">Example where Limit Does Not Exist:</p>
+                    <div class="math-display">\[ \lim_{(x,y) \to (0,0)} \frac{x^2 - y^2}{x^2 + y^2} \]</div>
+                    <p>Along $y=0$, limit is $1$. Along $x=0$, limit is $-1$. Limit DNE.</p>
+                </div>
+
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+                    <p class="font-bold">Example using Polar Coordinates:</p>
+                    <p>To evaluate $\lim_{(x,y) \to (0,0)} \frac{8x^2y}{x^2+y^2}$, let $x = r\cos\theta, y = r\sin\theta$:</p>
+                    <div class="math-display">\[ \lim_{r \to 0} \frac{8r^3 \cos^2\theta \sin\theta}{r^2} = \lim_{r \to 0} 8r \cos^2\theta \sin\theta = 0 \]</div>
+                    <p>Since it approaches 0 regardless of $\theta$, the limit is 0.</p>
+                </div>
+
+                <h3 class="text-2xl font-semibold text-slate-800 mt-8 mb-4">4.3 Continuity</h3>
+                <p class="mb-4">$f: \R^m \rightarrow \R$ is continuous at $\veca \in D$ if:</p>
+                <div class="math-display">\[ \lim_{\vecx \to \veca} f(\vecx) = f(\veca) \]</div>
+                <p class="italic bg-yellow-50 p-3 rounded-lg border border-yellow-200"><strong>Theorem:</strong> A continuous function on a closed and bounded set attains its absolute maximum and minimum values.</p>
+            </section>
+
+            <!-- Section 5 -->
+            <section id="section-5" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 border-b-2 border-slate-100 pb-2 mb-6">5. Derivatives</h2>
+
+                <h3 class="text-2xl font-semibold text-slate-800 mt-8 mb-4">5.1 Partial Derivatives</h3>
+                <p class="mb-4">For $f(x,y)$, the partial derivatives at $(a,b)$ are:</p>
+                <div class="math-display">\[ f_x(a,b) = \frac{\partial f}{\partial x}(a,b) = \lim_{h \to 0} \frac{f(a+h, b) - f(a,b)}{h} \]</div>
+                <div class="math-display">\[ f_y(a,b) = \frac{\partial f}{\partial y}(a,b) = \lim_{h \to 0} \frac{f(a, b+h) - f(a,b)}{h} \]</div>
+                <p class="italic bg-yellow-50 p-3 rounded-lg border border-yellow-200 mt-4"><strong>Clairaut's Theorem:</strong> If $f_{xy}$ and $f_{yx}$ are continuous, they are equal ($f_{xy} = f_{yx}$).</p>
+
+                <h3 class="text-2xl font-semibold text-slate-800 mt-8 mb-4">5.2 The Gradient and Hessian Matrix</h3>
+                <p class="mb-4">The gradient is a vector field:</p>
+                <div class="math-display">\[ \nabla f = \left( \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z} \right) \]</div>
+                <p class="mb-4 mt-6">The Hessian is the symmetric matrix of second partial derivatives:</p>
+                <div class="math-display">\[ H_f = \begin{pmatrix} f_{xx} & f_{xy} \\ f_{yx} & f_{yy} \end{pmatrix} \]</div>
+
+                <h3 class="text-2xl font-semibold text-slate-800 mt-8 mb-4">5.3 Differentiability and Tangent Planes</h3>
+                <p class="mb-4">A function $f: \R^2 \rightarrow \R$ is differentiable at $\veca = (a,b)$ if there exists a linear operator $d_{\veca}f$ such that:</p>
+                <div class="math-display">\[ \lim_{\vecx \to \veca} \frac{f(\vecx) - f(\veca) - \nabla f(\veca) \cdot (\vecx - \veca)}{\norm{\vecx - \veca}} = 0 \]</div>
+                
+                <h4 class="text-lg font-bold mt-6 mb-2">Tangent Plane Equation:</h4>
+                <div class="math-display">\[ z = f(a,b) + f_x(a,b)(x-a) + f_y(a,b)(y-b) \]</div>
+                
+                <p class="italic bg-yellow-50 p-3 rounded-lg border border-yellow-200 mt-4"><strong>Theorem:</strong> If the partial derivatives exist and are continuous at $\veca$, then $f$ is differentiable at $\veca$. If $f$ is differentiable, then $f$ is continuous.</p>
+            </section>
+
+            <!-- Section 6 -->
+            <section id="section-6" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 border-b-2 border-slate-100 pb-2 mb-6">6. Chain Rule and Directional Derivatives</h2>
+
+                <h3 class="text-2xl font-semibold text-slate-800 mt-8 mb-4">6.1 The Chain Rule</h3>
+                <p class="mb-4">If $f = f(x,y,z)$ and $x = x(u,v), y = y(u,v), z = z(u,v)$, then:</p>
+                <div class="math-display">\[ \frac{\partial f}{\partial u} = \frac{\partial f}{\partial x}\frac{\partial x}{\partial u} + \frac{\partial f}{\partial y}\frac{\partial y}{\partial u} + \frac{\partial f}{\partial z}\frac{\partial z}{\partial u} \]</div>
+
+                <h3 class="text-2xl font-semibold text-slate-800 mt-8 mb-4">6.2 Directional Derivatives</h3>
+                <p class="mb-4">The rate of change of $f$ in the direction of a unit vector $\vec{u}$ is:</p>
+                <div class="math-display">\[ D_{\vec{u}}f(\vecx_0) = \nabla f(\vecx_0) \cdot \vec{u} = \norm{\nabla f(\vecx_0)} \norm{\vec{u}} \cos\theta \]</div>
+                <ul class="list-disc pl-6 mb-6 space-y-2">
+                    <li>The directional derivative is <strong>maximal</strong> in the direction of the gradient $\nabla f(\vecx_0)$.</li>
+                    <li>The maximal value of the rate of change is $\norm{\nabla f(\vecx_0)}$.</li>
+                    <li>The direction of minimum rate of change is $-\nabla f(\vecx_0)$.</li>
+                </ul>
+            </section>
+
+            <!-- Section 7 -->
+            <section id="section-7" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 border-b-2 border-slate-100 pb-2 mb-6">7. Optimization</h2>
+
+                <h3 class="text-2xl font-semibold text-slate-800 mt-8 mb-4">7.1 Local Maxima and Minima</h3>
+                <p class="mb-4">A function $f$ has a local maximum at $\veca$ if $f(\vecx) \le f(\veca)$ for all $\vecx$ in some neighborhood $B_\epsilon(\veca)$.</p>
+                <p class="mb-6">Candidates for local extrema are <strong>critical points</strong>, where $\nabla f(\veca) = \vec{0}$ or $\nabla f$ does not exist.</p>
+
+                <h3 class="text-2xl font-semibold text-slate-800 mt-8 mb-4">7.2 Second Derivative Test</h3>
+                <p class="mb-4">Let $\veca$ be a critical point ($\nabla f(\veca) = \vec{0}$) and define $\Delta_2 = \det(H) = f_{xx}f_{yy} - (f_{xy})^2$.</p>
+                <ol class="list-decimal pl-6 mb-6 space-y-2">
+                    <li>If $\Delta_2 > 0$ and $f_{xx} > 0$, $f$ has a <strong>local minimum</strong> at $\veca$.</li>
+                    <li>If $\Delta_2 > 0$ and $f_{xx} < 0$, $f$ has a <strong>local maximum</strong> at $\veca$.</li>
+                    <li>If $\Delta_2 < 0$, $f$ has a <strong>saddle point</strong> at $\veca$.</li>
+                    <li>If $\Delta_2 = 0$, the test is inconclusive.</li>
+                </ol>
+
+                <h3 class="text-2xl font-semibold text-slate-800 mt-8 mb-4">7.3 Absolute Maxima and Minima</h3>
+                <p class="mb-4">To find the absolute maximum and minimum on a closed, bounded region $D$:</p>
+                <ol class="list-decimal pl-6 mb-6 space-y-2">
+                    <li>Find all critical points of $f$ inside $D$ and evaluate $f$ at these points.</li>
+                    <li>Find the extreme values of $f$ on the boundary $\partial D$ (often using parameterization or Lagrange multipliers).</li>
+                    <li>The largest of these values is the absolute maximum; the smallest is the absolute minimum.</li>
+                </ol>
+            </section>
+
+            <!-- Section 8 -->
+            <section id="section-8" class="mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 border-b-2 border-slate-100 pb-2 mb-6">8. Lagrange Multipliers</h2>
+                <p class="mb-4">To maximize or minimize $f(\vecx)$ subject to a constraint $g(\vecx) = k$:</p>
+                <ol class="list-decimal pl-6 mb-6 space-y-2">
+                    <li>Set up the system of equations: $\nabla f = \lambda \nabla g$ and $g(\vecx) = k$.</li>
+                    <li>Solve the system for $(x, y, z, \lambda)$.</li>
+                    <li>Evaluate $f$ at all solution points to find the extrema.</li>
+                </ol>
+
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-6 mb-6">
+                    <p class="font-bold text-lg mb-2">Example Setup:</p>
+                    <p class="mb-4">Maximize volume $f(x,y,z) = xyz$ subject to $x+2y+3z = 6$ (with $x,y,z \ge 0$).</p>
+                    <div class="math-display">\[ \nabla f = (yz, xz, xy) \quad \text{and} \quad \nabla g = (1, 2, 3) \]</div>
+                    <p class="font-bold mt-4 mb-2">System:</p>
+                    <div class="math-display">
+                        \begin{align*}
+                            yz &= \lambda \\
+                            xz &= 2\lambda \\
+                            xy &= 3\lambda \\
+                            x + 2y + 3z &= 6
+                        \end{align*}
+                    </div>
+                    <p class="mt-4">Solving this system yields the maximum volume.</p>
+                </div>
+            </section>
+
+        </article>
+        
+        <!-- Footer -->
+        <footer class="mt-16 pt-8 border-t border-slate-200 text-center text-slate-500 text-sm">
+            <p>Calculus II Notes - Generated via Canvas.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
